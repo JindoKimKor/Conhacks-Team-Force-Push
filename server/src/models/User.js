@@ -1,72 +1,71 @@
-const mongoose = require('mongoose');
+import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
-  id: { type: mongoose.Schema.Types.ObjectId, auto: true },
-  name: { type: String, required: true },
   email: {
-    type: String,
     required: true,
+    type: String,
     unique: true,
     validate: {
-      validator: (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value),
-      message: 'Invalid email format'
+      message: "Invalid email format",
+      validator: value => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
     }
   },
+  name: { required: true, type: String },
   password: {
-    type: String,
-    required: true,
     minlength: 8,
+    required: true,
+    type: String
     //select: false
   },
-  points: { type: Number, default: 0 },
+  points: { default: 0, type: Number },
   profiles: {
     experience: {
-      type: Number,
-      min: 1,
-      max: 100,
       default: 1,
+      max: 100,
+      min: 1,
+      type: Number,
       validate: {
-        validator: (value) => value >= 1 && value <= 100,
-        message: 'Experience must be between 1 and 100'
+        message: "Experience must be between 1 and 100",
+        validator: value => value >= 1 && value <= 100
       }
     },
+    goals_assigned: { default: [], type: [String] },
+    goals_completed: { default: 0, type: Number },
+    items_available: { default: [], type: [String] },
+    items_purchased: { default: [], type: [String] },
     level: {
-      type: Number,
+      default: 1,
       min: 1,
-      default: 1
+      type: Number
     },
     sign_up_selections: {
-      commute_type: {
-        type: String,
-        enum: ['Car', 'Bus', 'Walk', 'Bike'],
-        required: true
-      },
       commute_distance: {
-        type: String,
-        enum: ['0-10 km', '10-30 km', '30-50 km', '50+'],
-        required: function () {
+        enum: ["0-10 km", "10-30 km", "30-50 km", "50+"],
+        required() {
           return this.commute_type !== null;
-        }
+        },
+        type: String
       },
-      recycle_frequency: {
-        type: String,
-        enum: ['Never', 'Sometimes', 'Often', 'Always'],
-        required: true
+      commute_type: {
+        enum: ["Car", "Bus", "Walk", "Bike"],
+        required: true,
+        type: String
       },
       garbage_bags_biweekly: {
-        type: String,
-        enum: ['0-2', '3-5', '6+'],
-        required: true
+        enum: ["0-2", "3-5", "6+"],
+        required: true,
+        type: String
+      },
+      recycle_frequency: {
+        enum: ["Never", "Sometimes", "Often", "Always"],
+        required: true,
+        type: String
       }
     },
-    goals_completed: { type: Number, default: 0 },
-    streaks: { type: Number, default: 0 },
-    items_available: { type: [String], default: [] },
-    items_purchased: { type: [String], default: [] },
-    goals_assigned: { type: [String], default: [] }
+    streaks: { default: 0, type: Number }
   }
 });
 
-const User = mongoose.model('User', userSchema);
+const User = mongoose.model("User", userSchema);
 
 export default User;
