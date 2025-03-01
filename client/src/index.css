@@ -1,11 +1,13 @@
 @import "tailwindcss";
 
-* {
-  @apply m-0 box-border p-0;
-}
+@layer base {
+  * {
+    @apply m-0 box-border p-0;
+  }
 
-:root {
-  @apply relative bg-black/95 text-white/85;
-  @apply subpixel-antialiased [font-synthesis:none] [text-rendering:optimizeLegibility];
-  @apply text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl;
+  :root {
+    @apply relative bg-black/95 text-black/85;
+    @apply subpixel-antialiased [font-synthesis:none] [text-rendering:optimizeLegibility];
+    @apply text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl;
+  }
 }
