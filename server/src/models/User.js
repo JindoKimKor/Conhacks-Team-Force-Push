@@ -5,6 +5,21 @@ const userSchema = new mongoose.Schema({
   name: { type: String, required: true },
   points: { type: Number, default: 0 },
   profiles: {
+    experience: {
+      type: Number,
+      min: 1,
+      max: 100,
+      default: 1,
+      validate: {
+        validator: (value) => value >= 1 && value <= 100,
+        message: 'Experience must be between 1 and 100'
+      }
+    },
+    level: {
+      type: Number,
+      min: 1,
+      default: 1
+    },
     sign_up_selections: {
       commute_type: {
         type: String,
@@ -23,7 +38,11 @@ const userSchema = new mongoose.Schema({
         enum: ['Never', 'Sometimes', 'Often', 'Always'],
         required: true
       },
-      garbage_bags_biweekly: { type: Number, min: 0, required: true }
+      garbage_bags_biweekly: {
+        type: Number,
+        min: 0,
+        required: true
+      }
     },
     goals_completed: { type: Number, default: 0 },
     streaks: { type: Number, default: 0 },
