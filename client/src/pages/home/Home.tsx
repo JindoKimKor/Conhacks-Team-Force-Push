@@ -1,5 +1,15 @@
 /* eslint-disable react/forbid-component-props */
-import { Bell, Calendar, Check, HelpCircle, Menu, Zap } from "lucide-react";
+import {
+  Bell,
+  Calendar,
+  Check,
+  HelpCircle,
+  Home,
+  Menu,
+  Package2,
+  Users,
+  Zap
+} from "lucide-react";
 
 import { Button } from "../../components/ui/button";
 
