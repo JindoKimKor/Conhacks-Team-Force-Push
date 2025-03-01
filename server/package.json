@@ -1,6 +1,7 @@
 {
   "name": "server",
   "version": "1.0.0",
+  "type": "module",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
@@ -14,5 +15,14 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.21.0",
+    "eslint-config-prettier": "^10.0.2",
+    "eslint-plugin-n": "^17.15.1",
+    "eslint-plugin-perfectionist": "^4.9.0",
+    "eslint-plugin-prettier": "^5.2.3",
+    "eslint-plugin-sort-keys-fix": "^1.1.2",
+    "globals": "^16.0.0"
   }
 }
