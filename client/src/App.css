@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+/* Base styles - This means CSS that is applied to the whole app */
+@layer base {
+  main {
+    @apply relative flex size-full min-h-[calc(100vh)] flex-col;
+  }
+}
+
+/* Component styles - This means CSS that is specific to components */
+@layer components {
+}
+
+/* Utility styles - These are styles that are used to modify existing components */
+@layer utilities {
+}
