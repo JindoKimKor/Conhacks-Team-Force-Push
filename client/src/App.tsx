@@ -8,6 +8,7 @@ import { Route, Routes, useNavigate } from "react-router-dom";
 import MenuNav from "./components/menu-nav/MenuNav";
 import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
+import Register from "./pages/register/Register";
 
 function App() {
   const navigate = useNavigate();
@@ -52,6 +53,7 @@ function App() {
       <Routes>
         <Route element={<Home />} path="/" />
         <Route element={<Login />} path="/login" />
+        <Route element={<Register />} path="/register" />
       </Routes>
       <MenuNav items={menuItems} />
     </main>
