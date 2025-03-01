@@ -96,7 +96,7 @@ export default function Shop() {
       </div>
 
       {/* Main Content */}
-      <div className="relative z-10 flex-1 bg-yellow-50/90 rounded-t-3xl">
+      <div className="relative  flex-1 bg-yellow-50/90 rounded-t-3xl">
         {/* Filter Icons */}
         <div className="flex justify-around p-4 border-b border-yellow-200/50  ">
           <Button className="text-yellow-800 text-3xl bg-amber-50 hover:bg-pink-300/30  ">
