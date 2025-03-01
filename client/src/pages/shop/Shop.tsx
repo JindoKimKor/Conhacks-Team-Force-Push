@@ -1,5 +1,7 @@
 /* eslint-disable react/forbid-component-props */
 /* eslint-disable react/button-has-type */
+import "./Shop.css";
+
 import {
   Check,
   Heart,
@@ -10,6 +12,7 @@ import {
   Store
 } from "lucide-react";
 import type React from "react";
+
 import { Button } from "../../components/ui/button";
 
 function ShopItem({
@@ -95,15 +98,31 @@ export default function Shop() {
       {/* Main Content */}
       <div className="relative z-10 flex-1 bg-yellow-50/90 rounded-t-3xl">
         {/* Filter Icons */}
-        <div className="flex justify-around p-4 border-b border-yellow-200/50">
-          <Button className="text-yellow-800 ">♥</Button>
-          <button className="text-gray-400">👕</button>
-          <button className="text-gray-400">👖</button>
-          <button className="text-gray-400">👚</button>
-          <button className="text-gray-400">🎩</button>
-          <button className="text-gray-400">👓</button>
-          <button className="text-gray-400">👞</button>
-          <button className="text-gray-400">🧦</button>
+        <div className="flex justify-around p-4 border-b border-yellow-200/50  ">
+          <Button className="text-yellow-800 text-3xl bg-amber-50 hover:bg-pink-300/30  ">
+            ♥
+          </Button>
+          <Button className="text-3xl text-gray-400 bg-amber-50 hover:bg-pink-300/30">
+            👕
+          </Button>
+          <Button className="text-3xl text-gray-400 bg-amber-50 hover:bg-pink-300/30">
+            👖
+          </Button>
+          <Button className="text-3xl text-gray-400 bg-amber-50 hover:bg-pink-300/30">
+            👚
+          </Button>
+          <Button className="text-3xl text-gray-400 bg-amber-50 hover:bg-pink-300/30">
+            🎩
+          </Button>
+          <Button className="text-3xl text-gray-400 bg-amber-50 hover:bg-pink-300/30">
+            👓
+          </Button>
+          <Button className="text-3xl text-gray-400 bg-amber-50 hover:bg-pink-300/30">
+            👞
+          </Button>
+          <Button className="text-3xl text-gray-400 bg-amber-50 hover:bg-pink-300/30">
+            🧦
+          </Button>
         </div>
 
         {/* Items Grid */}
