@@ -13,7 +13,7 @@ import {
 
 import { Button } from "../../components/ui/button";
 
-export default function Homepage() {
+export default function Home() {
   return (
     <div className="flex flex-col min-h-screen min-w-full bg-green-500 mx-auto relative">
       {/* Background Scene */}
