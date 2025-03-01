@@ -30,7 +30,7 @@ router.post('/', async (req, res) => {
     const perk = new Perk(req.body);
     try {
         const newPerk = await perk.save();
-        res.status(201).json(newPerk);
+        res.status(200).json(newPerk);
     } catch (err) {
         res.status(400).json({ message: err.message });
     }
