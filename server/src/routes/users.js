@@ -1,6 +1,7 @@
 import { Router } from "express";
+import User from '../models/User.js'; // Updated to ES modules import
+
 const router = Router();
-const User = require('../models/User'); // Adjust the path based on your project structure
 
 // Get all users
 router.get('/', async (req, res) => {

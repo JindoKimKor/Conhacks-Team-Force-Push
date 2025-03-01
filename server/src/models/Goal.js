@@ -6,16 +6,16 @@ const goalSchema = new mongoose.Schema(
       required: true,
       type: String
     },
+    points: {
+      default: 0,
+      required: true,
+      type: Number
+    },
     status: {
       default: "not completed",
       enum: ["completed", "not completed"],
       required: true,
       type: String
-    },
-    points: {
-      default: 0,
-      required: true,
-      type: Number
     },
     xpGain: {
       default: 0,
