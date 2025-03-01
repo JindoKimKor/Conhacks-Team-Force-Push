@@ -1,0 +1,7 @@
+@tailwind utilities;
+
+@layer components {
+  .items-styling TaskItem {
+    @apply bg-white shadow-md rounded-lg p-40;
+  }
+}

@@ -1,13 +1,13 @@
 import { Router } from "express";
 
-import generate from "./generate.js";
 import goals from "./goals.js";
 import users from "./users.js";
+import perks from "./perks.js";
 
 const router = Router();
 
 router.use("/goals", goals);
 router.use("/users", users);
-router.use("/generate", generate);
+router.use("/perks", perks);
 
 export default router;
