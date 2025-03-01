@@ -8,7 +8,7 @@ import { Route, Routes } from "react-router-dom";
 
 import MenuNav from "./components/menu-nav/MenuNav";
 import Home from "./pages/Home/Home";
-import Login from "./pages/Login/Login";
+import Login from "./pages/login/Login";
 
 const menuItems = [
   {
