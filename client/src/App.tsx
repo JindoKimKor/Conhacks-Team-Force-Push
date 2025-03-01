@@ -1,10 +1,15 @@
 import "./App.css";
 
+import { Route, Routes } from "react-router-dom";
+
+import Login from "./pages/Login/Login";
+
 function App() {
   return (
     <main>
-      <h1>Team Force Push</h1>
-      <h2>😅</h2>
+      <Routes>
+        <Route element={<Login />} path="/login" />
+      </Routes>
     </main>
   );
 }
