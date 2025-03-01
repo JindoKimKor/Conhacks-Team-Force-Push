@@ -3,7 +3,6 @@ import "./App.css";
 import { BsStars } from "react-icons/bs";
 import { FaHeart, FaShoppingBag } from "react-icons/fa";
 import { GoGoal } from "react-icons/go";
-import { IoSettingsSharp } from "react-icons/io5";
 import { Route, Routes } from "react-router-dom";
 
 import MenuNav from "./components/menu-nav/MenuNav";
@@ -42,14 +41,6 @@ const menuItems = [
     label: "Perks",
     onClick: () => {
       console.log("Perks clicked");
-    }
-  },
-  {
-    icon: <IoSettingsSharp />,
-    id: 5,
-    label: "Settings",
-    onClick: () => {
-      console.log("Settings clicked");
     }
   }
 ];
