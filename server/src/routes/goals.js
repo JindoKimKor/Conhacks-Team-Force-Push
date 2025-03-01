@@ -31,7 +31,7 @@ router.post("/", async (req, res) => {
   try {
     const goal = new Goal(req.body);
     await goal.save();
-    res.status(201).json(goal);
+    res.status(200).json(goal);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
@@ -73,17 +73,17 @@ router.patch("/:id/status", async (req, res) => {
     if (!status || !["completed", "not completed"].includes(status)) {
       return res.status(400).json({ message: "Invalid status value" });
     }
-    
+
     const goal = await Goal.findByIdAndUpdate(
-      req.params.id, 
-      { status }, 
+      req.params.id,
+      { status },
       { new: true, runValidators: true }
     );
-    
+
     if (!goal) {
       return res.status(404).json({ message: "Goal not found" });
     }
-    
+
     res.json(goal);
   } catch (error) {
     res.status(400).json({ error: error.message });
