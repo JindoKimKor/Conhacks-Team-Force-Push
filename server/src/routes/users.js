@@ -28,7 +28,7 @@ router.post('/', async (req, res) => {
   const user = new User(req.body);
   try {
     const newUser = await user.save();
-    res.status(201).json(newUser);
+    res.status(200).json(newUser);
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
