@@ -4,11 +4,13 @@ import { BsStars } from "react-icons/bs";
 import { FaHeart, FaShoppingBag } from "react-icons/fa";
 import { GoGoal } from "react-icons/go";
 import { IoSettingsSharp } from "react-icons/io5";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import MenuNav from "./components/menu-nav/MenuNav";
 import Home from "./pages/home/Home";
 import Login from "./pages/Login/Login";
+import Shop from "./pages/shop/Shop";
 
 const menuItems = [
   {
@@ -49,7 +51,7 @@ const menuItems = [
     id: 5,
     label: "Settings",
     onClick: () => {
-      console.log("Settings clicked");
+      return <Navigate to="/shop" />;
     }
   }
 ];
@@ -60,6 +62,7 @@ function App() {
       <Routes>
         <Route element={<Home />} path="/" />
         <Route element={<Login />} path="/login" />
+        <Route element={<Shop />} path="/shop" />
       </Routes>
       <MenuNav items={menuItems} />
     </main>
