@@ -1,26 +1,26 @@
 // server/src/models/Perk.js
-const mongoose = require('mongoose');
+import mongoose from "mongoose";
 
 const perkSchema = new mongoose.Schema({
-    companyName: {
-        type: String,
-        required: [true, 'Company name is required']
-    },
-    image: {
-        type: String,
-        required: [true, 'Image URL is required']
-    },
-    link: {
-        type: String,
-        required: [true, 'Deal link is required']
-    },
-    level: {
-        type: Number,
-        required: [true, 'Level is required'],
-        min: [1, 'Level must be at least 1']
-    }
+  companyName: {
+    required: [true, "Company name is required"],
+    type: String
+  },
+  image: {
+    required: [true, "Image URL is required"],
+    type: String
+  },
+  level: {
+    min: [1, "Level must be at least 1"],
+    required: [true, "Level is required"],
+    type: Number
+  },
+  link: {
+    required: [true, "Deal link is required"],
+    type: String
+  }
 });
 
-const Perk = mongoose.model('Perk', perkSchema);
+const Perk = mongoose.model("Perk", perkSchema);
 
 export default Perk;
