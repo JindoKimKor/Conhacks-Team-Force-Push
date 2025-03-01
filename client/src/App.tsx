@@ -3,60 +3,51 @@ import "./App.css";
 import { BsStars } from "react-icons/bs";
 import { FaHeart, FaShoppingBag } from "react-icons/fa";
 import { GoGoal } from "react-icons/go";
-import { IoSettingsSharp } from "react-icons/io5";
-import { Navigate, Route, Routes } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 
 import MenuNav from "./components/menu-nav/MenuNav";
 import Home from "./pages/home/Home";
-import Login from "./pages/Login/Login";
+import Login from "./pages/login/Login";
 import Shop from "./pages/shop/Shop";
 
-const menuItems = [
-  {
-    icon: <GoGoal />,
-    id: 1,
-    label: "Goals",
-    onClick: () => {
-      console.log("Goals clicked");
-    }
-  },
-  {
-    badge: 3,
-    icon: <FaHeart />,
-    id: 2,
-    label: "Buddy",
-    onClick: () => {
-      console.log("Buddy clicked");
-    }
-  },
-  {
-    icon: <FaShoppingBag />,
-    id: 3,
-    label: "Shop",
-    onClick: () => {
-      console.log("Shop clicked");
-    }
-  },
-  {
-    icon: <BsStars />,
-    id: 4,
-    label: "Perks",
-    onClick: () => {
-      console.log("Perks clicked");
-    }
-  },
-  {
-    icon: <IoSettingsSharp />,
-    id: 5,
-    label: "Settings",
-    onClick: () => {
-      return <Navigate to="/shop" />;
-    }
-  }
-];
-
 function App() {
+  const navigate = useNavigate();
+
+  const menuItems = [
+    {
+      icon: <GoGoal />,
+      id: 1,
+      label: "Goals",
+      onClick: () => {
+        void navigate("/");
+      }
+    },
+    {
+      badge: 3,
+      icon: <FaHeart />,
+      id: 2,
+      label: "Buddy",
+      onClick: () => {
+        void navigate("/buddy");
+      }
+    },
+    {
+      icon: <FaShoppingBag />,
+      id: 3,
+      label: "Shop",
+      onClick: () => {
+        void navigate("/shop");
+      }
+    },
+    {
+      icon: <BsStars />,
+      id: 4,
+      label: "Perks",
+      onClick: () => {
+        void navigate("/perks");
+      }
+    }
+  ];
   return (
     <main>
       <Routes>

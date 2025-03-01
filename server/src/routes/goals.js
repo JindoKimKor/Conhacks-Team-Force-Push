@@ -1,4 +1,5 @@
 import { Router } from "express";
+
 import Goal from "../models/Goal.js";
 
 const router = Router();
