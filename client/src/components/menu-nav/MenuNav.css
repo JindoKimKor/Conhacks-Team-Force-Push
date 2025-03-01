@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+.menu-nav {
+  @apply bg-white overflow-hidden font-sans fixed bottom-0 w-full;
+}
+.menu-nav ul {
+  @apply flex justify-evenly;
+}
+
+.menu-list {
+  @apply list-none bg-white;
+}
+
+.menu-item {
+  @apply p-0 cursor-pointer select-none;
+}
+
+.menu-item-content {
+  @apply flex flex-col items-center justify-center p-3 min-h-[44px] relative;
+}
+
+.menu-item-icon {
+  @apply text-xl text-black;
+}
+
+.menu-item-label {
+  @apply text-lg text-black;
+}
