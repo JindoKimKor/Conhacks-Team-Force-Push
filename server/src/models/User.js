@@ -39,8 +39,8 @@ const userSchema = new mongoose.Schema({
         required: true
       },
       garbage_bags_biweekly: {
-        type: Number,
-        min: 0,
+        type: String,
+        enum: ['0-2', '3-5', '6+'],
         required: true
       }
     },
