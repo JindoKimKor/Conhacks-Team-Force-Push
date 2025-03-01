@@ -6,7 +6,7 @@ import { GoGoal } from "react-icons/go";
 import { Route, Routes } from "react-router-dom";
 
 import MenuNav from "./components/menu-nav/MenuNav";
-import Home from "./pages/Home/Home";
+import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
 
 const menuItems = [
@@ -49,8 +49,8 @@ function App() {
   return (
     <main>
       <Routes>
-        <Route element={<Login />} path="/login" />
         <Route element={<Home />} path="/" />
+        <Route element={<Login />} path="/login" />
       </Routes>
       <MenuNav items={menuItems} />
     </main>

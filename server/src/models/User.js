@@ -3,6 +3,21 @@ const mongoose = require('mongoose');
 const userSchema = new mongoose.Schema({
   id: { type: mongoose.Schema.Types.ObjectId, auto: true },
   name: { type: String, required: true },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+    validate: {
+      validator: (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value),
+      message: 'Invalid email format'
+    }
+  },
+  password: {
+    type: String,
+    required: true,
+    minlength: 8,
+    //select: false
+  },
   points: { type: Number, default: 0 },
   profiles: {
     experience: {
@@ -54,4 +69,4 @@ const userSchema = new mongoose.Schema({
 
 const User = mongoose.model('User', userSchema);
 
-module.exports = User;
+export default User;
