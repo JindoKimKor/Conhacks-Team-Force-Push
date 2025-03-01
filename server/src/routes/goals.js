@@ -12,7 +12,7 @@ router.get("/", async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
-
+ 
 // Get a specific goal by ID
 router.get("/:id", async (req, res) => {
   try {
