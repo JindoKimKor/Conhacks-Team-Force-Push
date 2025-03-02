@@ -3,6 +3,7 @@ import "./App.css";
 import { Turtle } from "lucide-react";
 import { BsStars } from "react-icons/bs";
 import { FaHeart, FaShoppingBag } from "react-icons/fa";
+import { GiTurtle } from "react-icons/gi";
 import { GoGoal } from "react-icons/go";
 import { MdLeaderboard } from "react-icons/md";
 import { Route, Routes, useNavigate } from "react-router-dom";
@@ -29,8 +30,7 @@ function App() {
       }
     },
     {
-      badge: 3,
-      icon: <Turtle />,
+      icon: <GiTurtle />,
       id: 2,
       label: "Buddy",
       onClick: () => {
