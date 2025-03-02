@@ -5,6 +5,19 @@ import User from "../models/User.js";
 
 const router = Router();
 
+// Get a specific user by name
+router.get("/name", async (req, res) => {
+  try {
+    const user = await User.findOne({ name: req.query.name });
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    return res.json(user);
+  } catch (err) {
+    return res.status(500).json({ message: err.message });
+  }
+});
+
 // Get all users
 router.get("/", async (req, res) => {
   try {
@@ -19,19 +32,6 @@ router.get("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
-    if (!user) {
-      return res.status(404).json({ message: "User not found" });
-    }
-    return res.json(user);
-  } catch (err) {
-    return res.status(500).json({ message: err.message });
-  }
-});
-
-// Get a specific user by name
-router.get("/:name", async (req, res) => {
-  try {
-    const user = await User.findOne({ name: req.params.name });
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
