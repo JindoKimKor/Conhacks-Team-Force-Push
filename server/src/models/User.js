@@ -7,7 +7,7 @@ const userSchema = new mongoose.Schema({
     unique: true,
     validate: {
       message: "Invalid email format",
-      validator: value => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
+      validator: value => /^[^\s@]+@[^\s@]+\.[^\s@]+$/u.test(value)
     }
   },
   name: { required: true, type: String },
@@ -38,6 +38,7 @@ const userSchema = new mongoose.Schema({
       min: 1,
       type: Number
     },
+    savedStreaks: { default: 0, type: Number },
     sign_up_selections: {
       commute_distance: {
         enum: ["0-10 km", "10-30 km", "30-50 km", "50+"],

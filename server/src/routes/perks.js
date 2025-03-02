@@ -20,10 +20,12 @@ router.get("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
   try {
     const perk = await Perk.findById(req.params.id);
-    if (!perk) return res.status(404).json({ message: "Perk not found" });
-    res.json(perk);
+    if (!perk) {
+      return res.status(404).json({ message: "Perk not found" });
+    }
+    return res.json(perk);
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    return res.status(500).json({ message: err.message });
   }
 });
 
@@ -44,11 +46,12 @@ router.put("/:id", async (req, res) => {
     const updatedPerk = await Perk.findByIdAndUpdate(req.params.id, req.body, {
       new: true
     });
-    if (!updatedPerk)
+    if (!updatedPerk) {
       return res.status(404).json({ message: "Perk not found" });
-    res.json(updatedPerk);
+    }
+    return res.json(updatedPerk);
   } catch (err) {
-    res.status(400).json({ message: err.message });
+    return res.status(400).json({ message: err.message });
   }
 });
 
@@ -56,11 +59,12 @@ router.put("/:id", async (req, res) => {
 router.delete("/:id", async (req, res) => {
   try {
     const deletedPerk = await Perk.findByIdAndDelete(req.params.id);
-    if (!deletedPerk)
+    if (!deletedPerk) {
       return res.status(404).json({ message: "Perk not found" });
-    res.json({ message: "Perk deleted successfully" });
+    }
+    return res.json({ message: "Perk deleted successfully" });
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    return res.status(500).json({ message: err.message });
   }
 });
 

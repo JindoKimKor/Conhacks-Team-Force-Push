@@ -1,5 +1,6 @@
 import { Router } from "express";
 
+import Turtle from "../models/Turtle.js";
 import User from "../models/User.js";
 
 const router = Router();
@@ -18,19 +19,33 @@ router.get("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
-    if (!user) return res.status(404).json({ message: "User not found" });
-    res.json(user);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    return res.json(user);
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    return res.status(500).json({ message: err.message });
   }
 });
 
 // Create a new user
 router.post("/", async (req, res) => {
-  const user = new User(req.body);
   try {
-    const newUser = await user.save();
-    res.status(200).json(newUser);
+    // 1. Create the User
+    const newUser = await User.create(req.body);
+
+    // 2. Create the associated Turtle
+    const turtleData = {
+      emotionalState: "neutral",
+      // Default emotional state
+      equipment: [], // Empty equipment array
+
+      userId: newUser._id
+    };
+    const newTurtle = await Turtle.create(turtleData);
+
+    // 3. Return combined response (optional)
+    res.status(200).json({ turtle: newTurtle, user: newUser });
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
@@ -42,11 +57,12 @@ router.put("/:id", async (req, res) => {
     const updatedUser = await User.findByIdAndUpdate(req.params.id, req.body, {
       new: true
     });
-    if (!updatedUser)
+    if (!updatedUser) {
       return res.status(404).json({ message: "User not found" });
-    res.json(updatedUser);
+    }
+    return res.json(updatedUser);
   } catch (err) {
-    res.status(400).json({ message: err.message });
+    return res.status(400).json({ message: err.message });
   }
 });
 
@@ -54,11 +70,12 @@ router.put("/:id", async (req, res) => {
 router.delete("/:id", async (req, res) => {
   try {
     const deletedUser = await User.findByIdAndDelete(req.params.id);
-    if (!deletedUser)
+    if (!deletedUser) {
       return res.status(404).json({ message: "User not found" });
-    res.json({ message: "User deleted successfully" });
+    }
+    return res.json({ message: "User deleted successfully" });
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    return res.status(500).json({ message: err.message });
   }
 });
 
