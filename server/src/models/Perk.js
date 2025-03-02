@@ -6,6 +6,10 @@ const perkSchema = new mongoose.Schema({
     required: [true, "Company name is required"],
     type: String
   },
+  description: {
+    required: [true, "Description is required"],
+    type: String
+  },
   image: {
     required: [true, "Image URL is required"],
     type: String
