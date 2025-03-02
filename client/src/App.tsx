@@ -10,6 +10,7 @@ import MenuNav from "./components/menu-nav/MenuNav";
 import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
 import Metrics from "./pages/metrics/Metrics";
+import Perks from "./pages/perks/Perks";
 import Register from "./pages/register/Register";
 import Shop from "./pages/shop/Shop";
 
@@ -67,6 +68,7 @@ function App() {
         <Route element={<Shop />} path="/shop" />
         <Route element={<Register />} path="/register" />
         <Route element={<Metrics />} path="/metrics" />
+        <Route element={<Perks />} path="/perks" />
       </Routes>
       <MenuNav items={menuItems} />
     </main>
