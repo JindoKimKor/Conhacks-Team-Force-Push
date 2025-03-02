@@ -85,6 +85,7 @@ const seedDatabase = async () => {
     // Create perks
     const perksData = [
       {
+        category: "Shopping",
         companyName: "EcoStore",
         description: "10% off on all reusable products",
         image: "https://example.com/images/ecostore.jpg",
@@ -92,6 +93,7 @@ const seedDatabase = async () => {
         link: "https://example.com/deals/ecostore"
       },
       {
+        category: "Transportation",
         companyName: "GreenTransport",
         description: "Free first ride on electric scooters",
         image: "https://example.com/images/greentransport.jpg",
@@ -99,6 +101,7 @@ const seedDatabase = async () => {
         link: "https://example.com/deals/greentransport"
       },
       {
+        category: "Food",
         companyName: "SustainableFood",
         description: "15% discount on organic produce",
         image: "https://example.com/images/sustainablefood.jpg",
@@ -106,6 +109,7 @@ const seedDatabase = async () => {
         link: "https://example.com/deals/sustainablefood"
       },
       {
+        category: "Fashion",
         companyName: "EcoFashion",
         description: "20% off on sustainable clothing",
         image: "https://example.com/images/ecofashion.jpg",
@@ -113,6 +117,7 @@ const seedDatabase = async () => {
         link: "https://example.com/deals/ecofashion"
       },
       {
+        category: "Energy",
         companyName: "RenewableEnergy",
         description: "Free home energy assessment",
         image: "https://example.com/images/renewableenergy.jpg",
@@ -127,7 +132,7 @@ const seedDatabase = async () => {
     console.log(`${perksData.length} perks created successfully`);
     perksData.forEach((perk, index) => {
       console.log(
-        `${index + 1}. ${perk.companyName} (Level ${perk.level}) - ${perk.description}`
+        `${index + 1}. ${perk.companyName} (Level ${perk.level}) - ${perk.description} - Category: ${perk.category}`
       );
     });
 

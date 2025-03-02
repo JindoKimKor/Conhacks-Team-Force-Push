@@ -4,11 +4,16 @@ import Perk from "../models/Perk.js";
 
 const router = Router();
 
-// Get all perks (with optional level filter)
+// Get all perks (with optional level and category filters)
 router.get("/", async (req, res) => {
   try {
-    const { level } = req.query;
-    const query = level ? { level } : {};
+    const { level, category } = req.query;
+    const query = {};
+    
+    // Add filters if provided
+    if (level) query.level = level;
+    if (category) query.category = category;
+    
     const perks = await Perk.find(query);
     res.json(perks);
   } catch (err) {
