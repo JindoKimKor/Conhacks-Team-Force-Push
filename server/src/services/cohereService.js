@@ -62,7 +62,7 @@ Recycling Frequency: ${profile.recycle_frequency}
 Garbage Bags Biweekly: ${profile.garbage_bags_biweekly}
 
 The goals should be:
-1. Short and concise (maximum 10-15 words)
+1. Short and concise (maximum 8 words)
 2. Specific and actionable
 3. Focused on sustainability and eco-friendly practices
 4. Realistic and feasible to complete within a week
@@ -70,6 +70,8 @@ The goals should be:
 
 Format each goal as a single, short sentence starting with a verb.
 Example: "Use a reusable water bottle for one week."
+
+When you get reprompted, do not deviate from the original prompt. Keep it simple and under 8 words.
 
 Goals:
 1.`;

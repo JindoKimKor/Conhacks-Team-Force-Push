@@ -32,13 +32,12 @@ const userSchema = new mongoose.Schema({
     goals_assigned: { default: [], type: [String] },
     goals_completed: { default: 0, type: Number },
     items: {
+      default: [],
       type: [
         {
-          item_id: { type: String, required: true },
-          availability: { type: Boolean, default: true }
+          availability: { default: true, type: Boolean }
         }
-      ],
-      default: []
+      ]
     },
     level: {
       default: 1,
