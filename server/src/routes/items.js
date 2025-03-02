@@ -4,7 +4,7 @@ import Item from "../models/Item.js";
 
 const router = Router();
 
-router.get("/api/items", async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const items = await Item.find();
     res.status(200).json(items);
@@ -13,7 +13,7 @@ router.get("/api/items", async (req, res) => {
   }
 });
 
-router.get("/api/items/:id", async (req, res) => {
+router.get("/:id", async (req, res) => {
   try {
     const item = await Item.findById(req.params.id);
     if (!item) {
@@ -25,7 +25,7 @@ router.get("/api/items/:id", async (req, res) => {
   }
 });
 
-router.post("/api/items", async (req, res) => {
+router.post("/", async (req, res) => {
   try {
     const newItem = new Item(req.body);
     const savedItem = await newItem.save();
@@ -39,7 +39,7 @@ router.post("/api/items", async (req, res) => {
   }
 });
 
-router.put("/api/items/:id", async (req, res) => {
+router.put("/:id", async (req, res) => {
   try {
     const updatedItem = await Item.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
@@ -57,7 +57,7 @@ router.put("/api/items/:id", async (req, res) => {
   }
 });
 
-router.delete("/api/items/:id", async (req, res) => {
+router.delete("/:id", async (req, res) => {
   try {
     const deletedItem = await Item.findByIdAndDelete(req.params.id);
     if (!deletedItem) {
