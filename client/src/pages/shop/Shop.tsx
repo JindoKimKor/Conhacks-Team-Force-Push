@@ -2,6 +2,7 @@
 /* eslint-disable react/button-has-type */
 import "./Shop.css";
 
+import axios from "axios";
 import {
   Check,
   Heart,
@@ -13,21 +14,54 @@ import {
   Store
 } from "lucide-react";
 import type React from "react";
+import { useEffect, useState } from "react";
 
 import { Button } from "../../components/ui/button";
 
+interface ShopItemType {
+  _id: string;
+  category: string;
+  cost: number;
+  icon: string;
+  imageUrl: string;
+  name: string;
+  owned?: boolean;
+}
+
 function ShopItem({
+  cost,
   icon,
+  imageUrl,
   name,
   owned = false
 }: {
+  cost: number;
   icon: string;
+  imageUrl: string;
   name: string;
   owned?: boolean;
 }) {
   return (
     <div className="bg-yellow-100 rounded-xl p-3 relative flex items-center justify-center aspect-square cursor-pointer hover:bg-amber-50">
-      <span className="text-2xl">{icon}</span>
+      {/* Image instead of icon */}
+      <div className="relative w-full aspect-square rounded-lg overflow-hidden mb-2">
+        <img
+          alt={name}
+          className="relative w-full h-3/4 rounded-lg overflow-hidden"
+          onError={e => {
+            // If image fails to load, fall back to the emoji icon
+            e.currentTarget.src = icon;
+          }}
+          src={imageUrl}
+        />
+      </div>
+
+      {/* Cost display */}
+      <div className="absolute bottom-1 right-1 bg-yellow-400/80 rounded-full px-1.5 py-0.5 flex items-center">
+        <span className="text-yellow-800 text-[10px]">{cost}</span>
+        <span className="text-[10px] ml-0.5">✨</span>
+      </div>
+
       {owned ? (
         <div className="absolute top-1 right-1 bg-orange-400 rounded-full p-0.5">
           <Check className="h-3 w-3 text-white" />
@@ -38,6 +72,54 @@ function ShopItem({
 }
 
 export default function Shop() {
+  const [items, setItems] = useState<ShopItemType[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState<string>("all");
+
+  // Fetch shop items from backend
+  useEffect(() => {
+    const fetchItems = async () => {
+      try {
+        setLoading(true);
+        const response = await axios.get("http://localhost:3000/api/items");
+        setItems(response.data);
+        console.log("response.data", response.data);
+        setError("");
+      } catch (err) {
+        console.error("Error fetching shop items:", err);
+        setError("Failed to load shop items");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchItems().catch((err: unknown) => {
+      console.error("Error fetching shop items:", err);
+    });
+  }, []);
+
+  // Filter items based on selected category
+  const filteredItems =
+    selectedCategory === "all"
+      ? items
+      : items.filter(
+          item => item.category.toLowerCase() === selectedCategory.toLowerCase()
+        );
+
+  // Map categories to emojis
+  // This is not working yet, I tried to make it dynamic but leaving it here just in case
+  const categoryEmojis: Record<string, string> = {
+    accessories: "👓",
+    all: "♥",
+    dresses: "�",
+    footwear: "�",
+    hats: "🎩",
+    pants: "�",
+    shirts: "�",
+    socks: "🧦"
+  };
+
   return (
     <div className="flex flex-col min-h-screen w-full mx-auto relative overflow-hidden mb-[56px]">
       {/* Background with simple decorative elements */}
@@ -121,29 +203,27 @@ export default function Shop() {
             🧦
           </Button>
         </div>
-
         {/* Items Grid */}
-        <div className="grid grid-cols-4 gap-2 p-4 ">
-          <ShopItem icon="🐔" name="Chicken Hat" />
-          <ShopItem icon="👕" name="Bear Hug Tee" />
-          <ShopItem icon="👚" name="Purple Shirt" owned />
-          <ShopItem icon="🧣" name="Orange Scarf" owned />
-
-          <ShopItem icon="💝" name="Heart Wand" />
-          <ShopItem icon="🧢" name="Red Cap" />
-          <ShopItem icon="🍡" name="Popsicle" />
-          <ShopItem icon="👞" name="Brown Shoes" />
-
-          <ShopItem icon="💎" name="Necklace" />
-          <ShopItem icon="🎀" name="Pink Bow" />
-          <ShopItem icon="👢" name="Brown Boots" />
-          <ShopItem icon="🦺" name="Orange Vest" />
-
-          <ShopItem icon="👜" name="Rainbow Bag" owned />
-          <ShopItem icon="👑" name="Crown" />
-          <ShopItem icon="🧥" name="Gray Hoodie" owned />
-          <ShopItem icon="🧦" name="Blue Socks" owned />
-        </div>
+        {!loading && !error && (
+          <div className="grid grid-cols-4 gap-2 p-4">
+            {filteredItems.length > 0 ? (
+              filteredItems.map(item => (
+                <ShopItem
+                  cost={item.cost}
+                  icon={item.icon}
+                  imageUrl={item.imageUrl}
+                  key={item._id}
+                  name={item.name}
+                  owned={item.owned}
+                />
+              ))
+            ) : (
+              <div className="col-span-4 text-center py-8 text-gray-500">
+                No items found in this category
+              </div>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );
