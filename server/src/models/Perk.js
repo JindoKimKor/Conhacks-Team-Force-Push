@@ -1,6 +1,10 @@
 import mongoose from "mongoose";
 
 const perkSchema = new mongoose.Schema({
+  category: {
+    type: String,
+    required: false
+  },
   companyName: {
     required: [true, "Company name is required"],
     type: String

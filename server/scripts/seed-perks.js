@@ -26,6 +26,7 @@ const seedPerks = async () => {
     // Sample perks data
     const perksData = [
       {
+        category: "Shopping",
         companyName: "EcoStore",
         description: "10% off on all reusable products",
         image: "https://example.com/images/ecostore.jpg",
@@ -33,6 +34,7 @@ const seedPerks = async () => {
         link: "https://example.com/deals/ecostore"
       },
       {
+        category: "Transportation",
         companyName: "GreenTransport",
         description: "Free first ride on electric scooters",
         image: "https://example.com/images/greentransport.jpg",
@@ -40,6 +42,7 @@ const seedPerks = async () => {
         link: "https://example.com/deals/greentransport"
       },
       {
+        category: "Food",
         companyName: "SustainableFood",
         description: "15% discount on organic produce",
         image: "https://example.com/images/sustainablefood.jpg",
@@ -47,6 +50,7 @@ const seedPerks = async () => {
         link: "https://example.com/deals/sustainablefood"
       },
       {
+        category: "Fashion",
         companyName: "EcoFashion",
         description: "20% off on sustainable clothing",
         image: "https://example.com/images/ecofashion.jpg",
@@ -54,29 +58,26 @@ const seedPerks = async () => {
         link: "https://example.com/deals/ecofashion"
       },
       {
-        companyName: "RenewableEnergy",
+        category: "Energy",
+        companyName: "RenewablePower",
         description: "Free home energy assessment",
-        image: "https://example.com/images/renewableenergy.jpg",
+        image: "https://example.com/images/renewablepower.jpg",
         level: 10,
-        link: "https://example.com/deals/renewableenergy"
+        link: "https://example.com/deals/renewablepower"
       }
     ];
 
-    // Insert perks into database
-    await Perk.insertMany(perksData);
+    // Insert perks
+    const createdPerks = await Perk.insertMany(perksData);
+    console.log(`Created ${createdPerks.length} perks`);
 
-    console.log(`${perksData.length} perks created successfully`);
-    perksData.forEach((perk, index) => {
-      console.log(
-        `${index + 1}. ${perk.companyName} (Level ${perk.level}) - ${perk.description}`
-      );
-    });
+    // Close the connection
+    await mongoose.connection.close();
+    console.log("Database connection closed");
   } catch (error) {
     console.error("Error seeding perks:", error);
-  } finally {
-    // Close the MongoDB connection
-    mongoose.connection.close();
-    console.log("MongoDB connection closed");
+    await mongoose.connection.close();
+    process.exit(1);
   }
 };
 
