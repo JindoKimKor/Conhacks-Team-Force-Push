@@ -25,72 +25,17 @@ const seedDatabase = async () => {
     await Item.deleteMany({});
     console.log("Cleared existing users, perks, and items");
 
-    // Create items first so we can reference them in users
-    // Create items
-    const itemsData = [
-      {
-        category: "Hats",
-        cost: 500,
-        icon: "🐔",
-        imageUrl: "https://www.halloweencostumes.ca/chicken-plush-hat.html",
-        name: "Chicken Hat"
-      },
-      {
-        category: "Shirts",
-        cost: 750,
-        icon: "👕",
-        imageUrl:
-          "https://www.ekosport.eu/prana-bear-squeeze-journeyman-p-9-116882",
-        name: "Bear Hug Tee"
-      },
-      {
-        category: "Accessories",
-        cost: 1200,
-        icon: "💝",
-        imageUrl:
-          "https://static.vecteezy.com/system/resources/previews/004/651/797/non_2x/heart-wand-in-cartoon-style-isolated-free-vector.jpg",
-        name: "Heart Wand"
-      },
-      {
-        category: "Accessories",
-        cost: 1000,
-        icon: "👜",
-        imageUrl:
-          "https://www.mastermindtoys.com/products/amuseable-rainbow-bag",
-        name: "Rainbow Bag"
-      },
-      {
-        category: "Hats",
-        cost: 2000,
-        icon: "👑",
-        imageUrl:
-          "https://t4.ftcdn.net/jpg/02/04/25/71/360_F_204257104_jnqWGXAbNuyORkJG9yw9tdfutvkmJblt.jpg",
-        name: "Crown"
-      },
-      {
-        category: "Footwear",
-        cost: 300,
-        icon: "🧦",
-        imageUrl: "https://socco78.com/products/white-striped-socks-royal",
-        name: "Blue Socks"
-      }
-    ];
-
-    // Insert items
-    const createdItems = await Item.insertMany(itemsData);
-    console.log(`Created ${createdItems.length} items`);
-
     // Create users
     const newUser = new User({
-      email: "newuser@example.com",
-      name: "New User",
+      email: "admin@example.com",
+      name: "admin",
       password: "password123",
       points: 0,
       profiles: {
         experience: 1,
         goals_assigned: [],
         goals_completed: 0,
-        items: [], // No items for new user
+        items: [],
         level: 1,
         savedStreaks: 0,
         sign_up_selections: {
@@ -103,10 +48,9 @@ const seedDatabase = async () => {
       }
     });
 
-    // Admin user with one item (Chicken Hat)
-    const adminUser = new User({
-      email: "admin@example.com",
-      name: "admin",
+    const experiencedUser = new User({
+      email: "experienced@example.com",
+      name: "Experienced User",
       password: "password123",
       points: 5000,
       profiles: {
@@ -115,8 +59,12 @@ const seedDatabase = async () => {
         goals_completed: 45,
         items: [
           {
-            _id: createdItems[0]._id.toString(), // Chicken Hat
-            availability: true // Item is available to use
+            _id: "65e0f1234567890123456789",
+            availability: true
+          },
+          {
+            _id: "65e0f2345678901234567890",
+            availability: false
           }
         ],
         level: 10,
@@ -133,7 +81,14 @@ const seedDatabase = async () => {
 
     // Save users
     await newUser.save();
-    await adminUser.save();
+    await experiencedUser.save();
+
+    console.log("Users created successfully:");
+    console.log("1. New User (Level 1) - Email: newuser@example.com");
+    console.log(
+      "2. Experienced User (Level 10) - Email: experienced@example.com"
+    );
+    console.log("Password for both users: password123");
 
     // Create perks
     const perksData = [
@@ -186,6 +141,69 @@ const seedDatabase = async () => {
     perksData.forEach((perk, index) => {
       console.log(
         `${index + 1}. ${perk.companyName} (Level ${perk.level}) - ${perk.description} - Category: ${perk.category}`
+      );
+    });
+
+    // Create items
+    const itemsData = [
+      {
+        category: "Hats",
+        cost: 500,
+        icon: "🐔",
+        imageUrl:
+          "https://images.halloweencostumes.ca/products/74781/2-41-177362/chicken-plush-hat-alt-4.jpg",
+        name: "Chicken Hat"
+      },
+      {
+        category: "Shirts",
+        cost: 750,
+        icon: "👕",
+        imageUrl:
+          "https://res.cloudinary.com/ekoweb/image/upload/s--XrZlyHB5--/f_auto,h_600,q_auto:eco,w_600/v1/products/9-116882/views/9-116882_bear-squeeze-journeyman-deep-pine-heather_1966311-depihe_01",
+        name: "Bear Hug Tee"
+      },
+      {
+        category: "Accessories",
+        cost: 1200,
+        icon: "💝",
+        imageUrl:
+          "https://static.vecteezy.com/system/resources/previews/004/651/797/non_2x/heart-wand-in-cartoon-style-isolated-free-vector.jpg",
+        name: "Heart Wand"
+      },
+      {
+        category: "Accessories",
+        cost: 1000,
+        icon: "👜",
+        imageUrl:
+          "https://www.mastermindtoys.com/cdn/shop/files/jellycat-amuseable-rainbow-bag-233070-376015_5000x.jpg?v=1728934323",
+        name: "Rainbow Bag"
+      },
+      {
+        category: "Hats",
+        cost: 2000,
+        icon: "👑",
+        imageUrl:
+          "https://t4.ftcdn.net/jpg/02/04/25/71/360_F_204257104_jnqWGXAbNuyORkJG9yw9tdfutvkmJblt.jpg",
+        name: "Crown"
+      },
+      {
+        category: "Footwear",
+        cost: 300,
+        icon: "🧦",
+        imageUrl:
+          "https://socco78.com/cdn/shop/products/BrightBlue_Socks_Front_1.png?v=1678289715",
+        name: "Blue Socks"
+      }
+    ];
+
+    // Insert items
+    const createdItems = await Item.insertMany(itemsData);
+    console.log(`Created ${createdItems.length} items`);
+
+    // Display created items
+    createdItems.forEach(item => {
+      console.log(
+        `- ${item.name} (${item.icon}) - ${item.cost} points - Category: ${item.category}`
       );
     });
 
