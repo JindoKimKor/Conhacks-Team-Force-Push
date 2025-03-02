@@ -3,13 +3,15 @@ import "./App.css";
 import { BsStars } from "react-icons/bs";
 import { FaHeart, FaShoppingBag } from "react-icons/fa";
 import { GoGoal } from "react-icons/go";
+import { MdLeaderboard } from "react-icons/md";
 import { Route, Routes, useNavigate } from "react-router-dom";
 
 import MenuNav from "./components/menu-nav/MenuNav";
 import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
-import Shop from "./pages/shop/Shop";
+import Metrics from "./pages/metrics/Metrics";
 import Register from "./pages/register/Register";
+import Shop from "./pages/shop/Shop";
 
 function App() {
   const navigate = useNavigate();
@@ -33,19 +35,27 @@ function App() {
       }
     },
     {
-      icon: <FaShoppingBag />,
-      id: 3,
-      label: "Shop",
-      onClick: () => {
-        void navigate("/shop");
-      }
-    },
-    {
       icon: <BsStars />,
       id: 4,
       label: "Perks",
       onClick: () => {
         void navigate("/perks");
+      }
+    },
+    {
+      icon: <MdLeaderboard />,
+      id: 5,
+      label: "Metrics",
+      onClick: () => {
+        void navigate("/metrics");
+      }
+    },
+    {
+      icon: <FaShoppingBag />,
+      id: 3,
+      label: "Shop",
+      onClick: () => {
+        void navigate("/shop");
       }
     }
   ];
@@ -56,6 +66,7 @@ function App() {
         <Route element={<Login />} path="/login" />
         <Route element={<Shop />} path="/shop" />
         <Route element={<Register />} path="/register" />
+        <Route element={<Metrics />} path="/metrics" />
       </Routes>
       <MenuNav items={menuItems} />
     </main>
