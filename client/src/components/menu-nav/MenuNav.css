@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 .menu-nav {
-  @apply bg-white overflow-hidden font-sans fixed bottom-0 w-full;
+  @apply bg-white overflow-hidden font-sans fixed bottom-0 w-full max-h-[56px];
 }
 .menu-nav ul {
   @apply flex justify-evenly items-center;
