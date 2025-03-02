@@ -22,8 +22,6 @@ Our goal was to create innovative solutions that promote sustainability, reduce 
 
 ## Project Idea
 
-## Project Idea
-
 People know it's important to be eco-friendly, but often struggle to apply this in daily life.
 
 > Our project bridges this gap by offering:
