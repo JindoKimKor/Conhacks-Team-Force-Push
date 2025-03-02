@@ -1,4 +1,3 @@
-// server/src/models/Perk.js
 import mongoose from "mongoose";
 
 const perkSchema = new mongoose.Schema({
