@@ -29,7 +29,7 @@ People know it's important to be eco-friendly, but often struggle to apply this 
 - **Personalized lifestyle tests**
 - **Gamified eco-challenges**
 - **Community building around sustainability**
-- **Awareness campaigns for SDG goals**
+- **Awareness campaigns for SDG 12 goals**
 - **Fundraising opportunities for environmental causes**
 
 We make green living fun, social, and impactful, turning individual actions into collective change.
