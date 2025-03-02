@@ -1,10 +1,11 @@
 import "./App.css";
 
+import { useEffect, useState } from "react";
 import { BsStars } from "react-icons/bs";
 import { FaHeart, FaShoppingBag } from "react-icons/fa";
 import { GoGoal } from "react-icons/go";
 import { MdLeaderboard } from "react-icons/md";
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 
 import MenuNav from "./components/menu-nav/MenuNav";
 import Home from "./pages/home/Home";
@@ -16,6 +17,19 @@ import Shop from "./pages/shop/Shop";
 
 function App() {
   const navigate = useNavigate();
+  const [isFirstVisit, setIsFirstVisit] = useState(true);
+
+  useEffect(() => {
+    // Check if user has visited before
+    const hasVisitedBefore = localStorage.getItem("hasVisitedBefore");
+    if (!hasVisitedBefore) {
+      // Set flag for first-time visitors
+      localStorage.setItem("hasVisitedBefore", "true");
+      setIsFirstVisit(true);
+    } else {
+      setIsFirstVisit(false);
+    }
+  }, []);
 
   const menuItems = [
     {
@@ -63,7 +77,10 @@ function App() {
   return (
     <main>
       <Routes>
-        <Route element={<Home />} path="/" />
+        <Route
+          element={isFirstVisit ? <Navigate replace to="/login" /> : <Home />}
+          path="/"
+        />
         <Route element={<Login />} path="/login" />
         <Route element={<Shop />} path="/shop" />
         <Route element={<Register />} path="/register" />
