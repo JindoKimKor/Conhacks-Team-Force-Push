@@ -36,19 +36,6 @@ We make green living fun, social, and impactful, turning individual actions into
 
 ---
 
----
-
-## Workflow and Brainstorming
-
-During the hackathon, we followed a structured brainstorming process to refine our ideas and workflows. Below is a summary of our approach:
-
-- **Initial Brainstorming**: We conducted brainstorming sessions to identify key challenges and potential solutions.
-- **Workflow Design**: A detailed workflow was created using scratch diagrams and documented in a PDF file.
-
-![Brainstorming Workflow](brainStorming.pdf)
-
----
-
 ## Technologies and Skills
 
 ### Client-Side
@@ -63,6 +50,16 @@ During the hackathon, we followed a structured brainstorming process to refine o
 - **Database**: [MongoDB]
 - **AI Integration**: [Cohere AI 7]
 - **API Design**: RESTful
+---
+
+## Workflow and Brainstorming
+
+During the hackathon, we followed a structured brainstorming process to refine our ideas and workflows. Below is a summary of our approach:
+
+- **Initial Brainstorming**: We conducted brainstorming sessions to identify key challenges and potential solutions.
+- **Workflow Design**: A detailed workflow was created using scratch diagrams and documented in a PDF file.
+
+![Brainstorming Workflow](brainStorming.pdf)
 
 ---
 
