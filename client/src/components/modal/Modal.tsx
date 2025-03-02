@@ -4,7 +4,6 @@ import { useState } from "react";
 import { Button } from "../ui/button";
 import { Checkbox } from "../ui/checkbox";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "../ui/dialog";
-import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
 
 interface Option {
   icon?: string;

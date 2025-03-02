@@ -2,12 +2,11 @@
 import "./Register.css";
 
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import Modal from "../../components/modal/Modal";
 import { Button } from "../../components/ui/button";
 import { Progress } from "../../components/ui/progress";
-
 /**
  * Register Component.
  */
@@ -22,6 +21,7 @@ export default function Register() {
   const [showSurvey, setShowSurvey] = useState(false);
   const [progress, setProgress] = useState(0);
   const [isCompleted, setIsCompleted] = useState(false);
+  const navigate = useNavigate();
 
   const questions = [
     {
@@ -72,6 +72,7 @@ export default function Register() {
     setProgress(100);
     setShowSurvey(false);
     setIsCompleted(true);
+    navigate("/");
   };
 
   const handleSubmit = (e: React.FormEvent) => {
