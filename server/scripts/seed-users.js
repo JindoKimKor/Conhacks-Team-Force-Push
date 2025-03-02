@@ -30,9 +30,9 @@ const seedUsers = async () => {
         experience: 1,
         goals_assigned: [],
         goals_completed: 0,
-        items_available: [],
-        items_purchased: [],
+        items: [],
         level: 1,
+        savedStreaks: 0,
         sign_up_selections: {
           commute_distance: "10-30 km",
           commute_type: "Car",
@@ -53,9 +53,18 @@ const seedUsers = async () => {
         experience: 80,
         goals_assigned: [],
         goals_completed: 45,
-        items_available: [],
-        items_purchased: [],
+        items: [
+          {
+            _id: "65e0f1234567890123456789",
+            availability: true
+          },
+          {
+            _id: "65e0f2345678901234567890",
+            availability: false
+          }
+        ],
         level: 10,
+        savedStreaks: 5,
         sign_up_selections: {
           commute_distance: "0-10 km",
           commute_type: "Bike",
