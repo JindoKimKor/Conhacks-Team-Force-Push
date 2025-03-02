@@ -103,8 +103,8 @@ export default function Metrics() {
         {/* Sun with rays */}
         <div className="absolute top-12 right-1/3 -translate-x-1/2 w-20 h-20 rounded-full bg-yellow-300 shadow-lg">
           <div
-            className="absolute inset-0 rounded-full bg-yellow-300 animate-pulse opacity-70"
-            style={{ animation: "pulse 3s infinite" }}
+            className="absolute inset-0 rounded-full bg-yellow-300 opacity-70"
+            style={{ animation: "sunPulse 3s infinite" }}
           />
         </div>
 
