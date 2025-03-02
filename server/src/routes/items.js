@@ -69,4 +69,46 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
+// GET all shop items
+router.get("/items", async (req, res) => {
+  try {
+    const items = await Item.find();
+    res.status(200).json(items);
+  } catch (error) {
+    console.error("Error fetching shop items:", error);
+    res.status(500).json({ message: "Failed to fetch shop items" });
+  }
+});
+
+// GET shop items by category
+router.get("/items/category/:category", async (req, res) => {
+  try {
+    const { category } = req.params;
+    const items = await Item.find({
+      category: new RegExp(category, "iu") // Case insensitive search with Unicode support
+    });
+    res.status(200).json(items);
+  } catch (error) {
+    console.error("Error fetching shop items by category:", error);
+    res.status(500).json({ message: "Failed to fetch shop items" });
+  }
+});
+
+// GET shop item by ID
+router.get("/items/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const item = await Item.findById(id);
+
+    if (!item) {
+      return res.status(404).json({ message: "Item not found" });
+    }
+
+    res.status(200).json(item);
+  } catch (error) {
+    console.error("Error fetching shop item:", error);
+    res.status(500).json({ message: "Failed to fetch shop item" });
+  }
+});
+
 export default router;
