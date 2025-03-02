@@ -200,22 +200,7 @@ export default function Home() {
               />
             ))
           ) : (
-            <>
-              <Card completed={true} icon="💧" points={5} text="Drink water" />
-              <Card
-                completed={true}
-                icon="🦒"
-                points={5}
-                text="Take a stretch break"
-              />
-              <Card completed={true} icon="🧼" points={5} text="Wash my face" />
-              <Card
-                completed={true}
-                icon="😊"
-                points={5}
-                text="Do one thing that makes me happy"
-              />
-            </>
+            <div className="text-center py-4">No goals available</div>
           )}
         </div>
       </div>
