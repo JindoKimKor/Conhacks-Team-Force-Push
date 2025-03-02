@@ -1,12 +1,8 @@
-import dotenv from "dotenv";
 import mongoose from "mongoose";
 
-import Perk from "../src/models/Perk.js";
 import User from "../src/models/User.js";
 
 const MONGODB_URI = "mongodb://localhost:27017/conhacks";
-// Load environment variables
-dotenv.config();
 
 // Connect to MongoDB
 mongoose

@@ -16,12 +16,12 @@ const itemSchema = new mongoose.Schema({
     validate: {
       message: "Invalid URL format",
       validator: value => {
-        return URL.canParse(value);
+        return value ? URL.canParse(value) : true;
       }
     }
   },
   name: {
-    require: true,
+    required: true,
     type: String
   }
 });
