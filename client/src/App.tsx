@@ -77,10 +77,7 @@ function App() {
   return (
     <main>
       <Routes>
-        <Route
-          element={isFirstVisit ? <Navigate replace to="/login" /> : <Home />}
-          path="/"
-        />
+        <Route element={<Home />} path="/" />
         <Route element={<Login />} path="/login" />
         <Route element={<Shop />} path="/shop" />
         <Route element={<Register />} path="/register" />
