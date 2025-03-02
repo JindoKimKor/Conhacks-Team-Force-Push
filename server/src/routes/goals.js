@@ -21,9 +21,9 @@ router.get("/:id", async (req, res) => {
     if (!goal) {
       return res.status(404).json({ message: "Goal not found" });
     }
-    res.json(goal);
+    return res.json(goal);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    return res.status(500).json({ error: error.message });
   }
 });
 
@@ -48,9 +48,9 @@ router.put("/:id", async (req, res) => {
     if (!goal) {
       return res.status(404).json({ message: "Goal not found" });
     }
-    res.json(goal);
+    return res.json(goal);
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    return res.status(400).json({ error: error.message });
   }
 });
 
@@ -61,9 +61,9 @@ router.delete("/:id", async (req, res) => {
     if (!goal) {
       return res.status(404).json({ message: "Goal not found" });
     }
-    res.json({ message: "Goal deleted successfully" });
+    return res.json({ message: "Goal deleted successfully" });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    return res.status(500).json({ error: error.message });
   }
 });
 
@@ -85,9 +85,9 @@ router.patch("/:id/status", async (req, res) => {
       return res.status(404).json({ message: "Goal not found" });
     }
 
-    res.json(goal);
+    return res.json(goal);
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    return res.status(400).json({ error: error.message });
   }
 });
 

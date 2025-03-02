@@ -28,10 +28,12 @@ function calculateEmotionalState(currentState, streaks, savedStreaks) {
 router.get("/:userId", async (req, res) => {
   try {
     const turtle = await Turtle.findOne({ userId: req.params.userId });
-    if (!turtle) return res.status(404).json({ message: "Turtle not found" });
-    res.json(turtle);
+    if (!turtle) {
+      return res.status(404).json({ message: "Turtle not found" });
+    }
+    return res.json(turtle);
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    return res.status(500).json({ message: err.message });
   }
 });
 
