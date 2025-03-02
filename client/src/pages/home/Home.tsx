@@ -63,19 +63,17 @@ export default function Home() {
           <div className="absolute bottom-1/6 right-40 w-6 h-4 bg-brown-700 rounded-t-lg" />
         </div>
       </div>
-      <div className="relative z-10 flex flex-col w-full h-full gap-y-4 p-4">
+      <div className="relative z-10 flex flex-col w-full h-full gap-y-4 ">
         {/* Header */}
         <header className="relative z-10 flex justify-between items-center ">
-          <Button
-            className="bg-white/80 rounded-md h-16 w-16"
-            onClick={() => {
-              console.log("Home button clicked");
-            }}
-            size="icon"
-            variant="ghost">
-            <Menu className="size-8 text-gray-600" />
-          </Button>
-          <div className="relative">
+          <div className="relative z-10 flex justify-between p-4">
+            <div className="flex gap-2">
+              <Button className="bg-white aspect-square size-12 rounded-lg shadow-sm hover:bg-amber-50">
+                <Menu className="size-8 text-gray-600" />
+              </Button>
+            </div>
+          </div>
+          <div className="relative mr-3">
             <Button
               className="bg-sky-400 rounded-full h-16 w-16"
               size="icon"
@@ -117,7 +115,7 @@ export default function Home() {
             <div className="flex-1 mx-2 h-2 bg-gray-300 rounded-full">
               <div className="w-1/4 h-full bg-yellow-400 rounded-full" />
             </div>
-            <div className="bg-yellow-100 rounded-full p-1">
+            <div className="bg-yellow-100 rounded-full p-2">
               <HelpCircle className="h-5 w-5 text-yellow-500" />
             </div>
           </div>

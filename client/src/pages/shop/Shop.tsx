@@ -39,7 +39,7 @@ function ShopItem({
 
 export default function Shop() {
   return (
-    <div className="flex flex-col min-h-screen w-full mx-auto relative overflow-hidden">
+    <div className="flex flex-col min-h-screen w-full mx-auto relative overflow-hidden mb-[56px]">
       {/* Background with simple decorative elements */}
       <div className="absolute inset-0 bg-pink-300">
         {/* Curved paths */}
@@ -123,7 +123,7 @@ export default function Shop() {
         </div>
 
         {/* Items Grid */}
-        <div className="grid grid-cols-4 gap-2 p-4">
+        <div className="grid grid-cols-4 gap-2 p-4 ">
           <ShopItem icon="🐔" name="Chicken Hat" />
           <ShopItem icon="👕" name="Bear Hug Tee" />
           <ShopItem icon="👚" name="Purple Shirt" owned />
