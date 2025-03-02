@@ -23,7 +23,7 @@ const seedUsers = async () => {
     // Create a fresh level 1 user
     const newUser = new User({
       email: "newuser@example.com",
-      name: "New User",
+      name: "admin",
       password: "password123",
       points: 0,
       profiles: {
