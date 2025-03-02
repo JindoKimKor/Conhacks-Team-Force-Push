@@ -9,6 +9,7 @@ import MenuNav from "./components/menu-nav/MenuNav";
 import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
 import Shop from "./pages/shop/Shop";
+import Register from "./pages/register/Register";
 
 function App() {
   const navigate = useNavigate();
@@ -54,6 +55,7 @@ function App() {
         <Route element={<Home />} path="/" />
         <Route element={<Login />} path="/login" />
         <Route element={<Shop />} path="/shop" />
+        <Route element={<Register />} path="/register" />
       </Routes>
       <MenuNav items={menuItems} />
     </main>
