@@ -28,7 +28,7 @@ const seedDatabase = async () => {
     // Create users
     const newUser = new User({
       email: "admin@example.com",
-      name: "adminadmin",
+      name: "admin",
       password: "password123",
       points: 0,
       profiles: {
