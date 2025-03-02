@@ -6,6 +6,7 @@ import {
   Check,
   Heart,
   Home,
+  Menu,
   Paintbrush,
   PawPrint,
   Sofa,
@@ -58,14 +59,10 @@ export default function Shop() {
 
       {/* Top Icons */}
       <div className="relative z-10 flex justify-between p-4">
-        <button className="text-white">✕</button>
         <div className="flex gap-2">
-          <button className="bg-white p-2 rounded-lg shadow-sm">
-            <Home className="h-5 w-5 text-orange-500" />
-          </button>
-          <button className="bg-white p-2 rounded-lg shadow-sm">
-            <Store className="h-5 w-5 text-orange-500" />
-          </button>
+          <Button className="bg-white aspect-square size-12 rounded-lg shadow-sm hover:bg-amber-50">
+            <Menu className="size-8 text-gray-600" />
+          </Button>
         </div>
       </div>
 
