@@ -1,5 +1,3 @@
-Certainly! I'll convert the OpenAPI specification into a GitHub README format. This will provide a clear, readable documentation for your User API directly in your repository.
-
 # User API Documentation
 
 ## API Version: 1.0.0
@@ -40,7 +38,7 @@ Creates a new user and associated turtle.
 - **Request Body:** [NewUser](#newuser) object
 - **Success Response:**
   - **Code:** 200
-  - **Content:** 
+  - **Content:**
     ```json
     {
       "user": User,
@@ -54,7 +52,7 @@ Retrieves a specific user by their ID.
 
 - **URL:** `/api/users/{id}`
 - **Method:** GET
-- **URL Params:** 
+- **URL Params:**
   - `id`: String (required)
 - **Success Response:**
   - **Code:** 200
@@ -146,7 +144,7 @@ Deletes a user by their ID.
 }
 ```
 
-Certainly! I'll create a GitHub README format documentation for the Turtle API based on the provided code. This documentation will complement the User API documentation.
+---
 
 # Turtle API Documentation
 
@@ -192,7 +190,7 @@ Retrieves a turtle associated with a specific user ID.
 
 - **URL:** `/api/turtles/:userId`
 - **Method:** GET
-- **URL Params:** 
+- **URL Params:**
   - `userId`: String (required)
 - **Success Response:**
   - **Code:** 200
@@ -205,7 +203,8 @@ Retrieves a turtle associated with a specific user ID.
 
 ### Update All Turtles' Emotional States
 
-Updates the emotional states of all turtles based on their associated users' streaks.
+Updates the emotional states of all turtles based on their associated users'
+streaks.
 
 - **URL:** `/api/turtles/update-all-emotional-states`
 - **Method:** POST
@@ -218,13 +217,16 @@ Updates the emotional states of all turtles based on their associated users' str
 
 ## Emotional State Calculation
 
-The emotional state of a turtle is calculated based on the user's streaks and saved streaks. The possible emotional states are: "sad", "neutral", "happy", and "excited".
+The emotional state of a turtle is calculated based on the user's streaks and
+saved streaks. The possible emotional states are: "sad", "neutral", "happy", and
+"excited".
 
 ### Logic:
 
 1. If the current streaks are greater than the saved streaks and greater than 0:
    - The emotional state improves by one level (e.g., "neutral" to "happy").
-2. If the streaks are not maintained (current streaks < saved streaks or both are 0):
+2. If the streaks are not maintained (current streaks < saved streaks or both
+   are 0):
    - The emotional state degrades by one level (e.g., "happy" to "neutral").
 
 ### Process:
@@ -235,4 +237,5 @@ The emotional state of a turtle is calculated based on the user's streaks and sa
    - Calculate the new emotional state for the associated turtle.
    - Update the turtle's emotional state in the database.
 
-This process ensures that the turtles' emotional states reflect the users' recent activity and streak maintenance.
+This process ensures that the turtles' emotional states reflect the users'
+recent activity and streak maintenance.
