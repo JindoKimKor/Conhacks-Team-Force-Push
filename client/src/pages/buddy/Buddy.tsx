@@ -1,5 +1,6 @@
 /* eslint-disable react/forbid-component-props */
 
+import axios from "axios";
 import {
   Check,
   Heart,
@@ -11,16 +12,42 @@ import {
   Store
 } from "lucide-react";
 import type React from "react";
+import { useEffect, useState } from "react";
 
 import { Button } from "../../components/ui/button";
 
+interface Item {
+  _id: string;
+  cost: number;
+  icon: string;
+  imageUrl?: string;
+  name: string;
+}
+
+interface UserItem {
+  availability: boolean;
+  item_id: string;
+}
+
+interface User {
+  [key: string]: any;
+  _id: string;
+  name: string;
+  profiles: {
+    [key: string]: any;
+    items: UserItem[];
+  };
+}
+
 function ShopItem({
   icon,
+  imageUrl,
   name,
   owned = false,
   page
 }: {
-  icon: string;
+  icon?: string;
+  imageUrl?: string;
   name: string;
   owned?: boolean;
   page?: string;
@@ -28,7 +55,15 @@ function ShopItem({
   return (
     <div
       className={`rounded-xl p-3 relative flex items-center justify-center aspect-square cursor-pointer hover:bg-amber-50 ${page !== "buddy" ? "bg-yellow-100 " : "bg-pink-200/80"}`}>
-      <span className="text-2xl">{icon}</span>
+      <span className="text-2xl">
+        <div className="relative w-full aspect-square rounded-lg overflow-hidden mb-2">
+          <img
+            alt={name}
+            className="relative size-full rounded-lg overflow-hidden"
+            src={imageUrl}
+          />
+        </div>
+      </span>
       {owned ? (
         <div className="absolute top-1 right-1 bg-orange-400 rounded-full p-0.5">
           <Check className="h-3 w-3 text-white" />
@@ -39,6 +74,54 @@ function ShopItem({
 }
 
 export default function Buddy() {
+  const [items, setItems] = useState<Item[]>([]);
+  const [ownedItems, setOwnedItems] = useState<Item[]>([]);
+
+  const getItems = async () => {
+    try {
+      const totalItems = await axios.get<Item[]>(
+        "http://localhost:3000/api/items"
+      );
+      if (totalItems.data && totalItems.data.length > 0) {
+        setItems(totalItems.data);
+
+        // Get user data to check owned items
+        const userData = await axios.get<User>(
+          "http://localhost:3000/api/users/name?name=admin"
+        );
+        const user = userData.data;
+
+        if (
+          user &&
+          user.profiles &&
+          user.profiles.items &&
+          user.profiles.items.length > 0
+        ) {
+          // Filter items that are owned by the user
+          const userOwnedItemIds = user.profiles.items.map(
+            item => item.item_id
+          );
+          const userOwnedItems = totalItems.data.filter(
+            item =>
+              userOwnedItemIds.includes(item._id) &&
+              user.profiles.items.find(
+                userItem => userItem.item_id === item._id
+              )?.availability !== false
+          );
+
+          setOwnedItems(userOwnedItems);
+          console.log("Owned items:", userOwnedItems);
+        }
+      }
+    } catch (error) {
+      console.error("Error fetching items:", error);
+    }
+  };
+
+  useEffect(() => {
+    void getItems();
+  }, []);
+
   return (
     <div className="flex flex-col min-h-screen w-full mx-auto relative overflow-hidden mb-[56px]">
       {/* Background with simple decorative elements */}
@@ -110,15 +193,54 @@ export default function Buddy() {
           </Button>
         </div>
 
-        {/* Items Grid */}
-        <div className="grid grid-cols-4 gap-2 p-4 ">
-          <ShopItem icon="👚" name="Purple Shirt" owned page="buddy" />
-          <ShopItem icon="🧣" name="Orange Scarf" owned page="buddy" />
+        {/* Owned Items Section */}
+        <div className="p-4 border-b border-yellow-200/50">
+          <h2 className="text-lg font-semibold text-yellow-800 mb-2">
+            My Items
+          </h2>
+          {ownedItems.length > 0 ? (
+            <div className="grid grid-cols-4 gap-2">
+              {ownedItems.map(item => (
+                <ShopItem
+                  imageUrl={item.imageUrl}
+                  key={item._id}
+                  name={item.name}
+                  owned={true}
+                  page="buddy"
+                />
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-4">
+              <p className="text-gray-500">No owned items yet</p>
+            </div>
+          )}
+        </div>
 
-          <ShopItem icon="👜" name="Rainbow Bag" owned page="buddy" />
-
-          <ShopItem icon="🧥" name="Gray Hoodie" owned page="buddy" />
-          <ShopItem icon="🧦" name="Blue Socks" owned page="buddy" />
+        {/* All Items Grid */}
+        <div className="p-4">
+          <h2 className="text-lg font-semibold text-yellow-800 mb-2">
+            All Items
+          </h2>
+          {items.length > 0 ? (
+            <div className="grid grid-cols-4 gap-2">
+              {items.map(item => (
+                <ShopItem
+                  imageUrl={item.imageUrl}
+                  key={item._id}
+                  name={item.name}
+                  owned={ownedItems.some(
+                    ownedItem => ownedItem._id === item._id
+                  )}
+                  page="buddy"
+                />
+              ))}
+            </div>
+          ) : (
+            <div className="col-span-4 text-center py-8">
+              <p className="text-gray-500">No items available</p>
+            </div>
+          )}
         </div>
       </div>
     </div>
