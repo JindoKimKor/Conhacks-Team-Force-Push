@@ -1,0 +1,36 @@
+@import "tailwindcss";
+
+@layer components {
+  .metric-card {
+    @apply transition-all duration-200 ease-in-out;
+  }
+
+  .metric-card:hover {
+    @apply transform -translate-y-1 shadow-md;
+  }
+
+  .icon-container {
+    @apply flex items-center justify-center rounded-md;
+  }
+
+  .value-container {
+    @apply mt-2;
+  }
+
+  /* Custom scrollbar for the metrics grid */
+  .metrics-grid::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .metrics-grid::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  .metrics-grid::-webkit-scrollbar-thumb {
+    @apply bg-white/30 rounded-full;
+  }
+
+  .metrics-grid::-webkit-scrollbar-thumb:hover {
+    @apply bg-white/50;
+  }
+}
