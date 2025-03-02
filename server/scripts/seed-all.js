@@ -35,9 +35,9 @@ const seedDatabase = async () => {
         experience: 1,
         goals_assigned: [],
         goals_completed: 0,
-        items_available: [],
-        items_purchased: [],
+        items: [],
         level: 1,
+        savedStreaks: 0,
         sign_up_selections: {
           commute_distance: "10-30 km",
           commute_type: "Car",
@@ -57,9 +57,18 @@ const seedDatabase = async () => {
         experience: 80,
         goals_assigned: [],
         goals_completed: 45,
-        items_available: [],
-        items_purchased: [],
+        items: [
+          {
+            _id: "65e0f1234567890123456789",
+            availability: true
+          },
+          {
+            _id: "65e0f2345678901234567890",
+            availability: false
+          }
+        ],
         level: 10,
+        savedStreaks: 5,
         sign_up_selections: {
           commute_distance: "0-10 km",
           commute_type: "Bike",
@@ -140,7 +149,6 @@ const seedDatabase = async () => {
       {
         category: "Hats",
         cost: 500,
-        // Leave empty for user to fill in
         icon: "🐔",
         imageUrl: "https://www.halloweencostumes.ca/chicken-plush-hat.html",
         name: "Chicken Hat"
@@ -148,7 +156,6 @@ const seedDatabase = async () => {
       {
         category: "Shirts",
         cost: 750,
-        // Leave empty for user to fill in
         icon: "👕",
         imageUrl:
           "https://www.ekosport.eu/prana-bear-squeeze-journeyman-p-9-116882",
@@ -157,7 +164,6 @@ const seedDatabase = async () => {
       {
         category: "Accessories",
         cost: 1200,
-        // Leave empty for user to fill in
         icon: "💝",
         imageUrl:
           "https://static.vecteezy.com/system/resources/previews/004/651/797/non_2x/heart-wand-in-cartoon-style-isolated-free-vector.jpg",
@@ -166,7 +172,6 @@ const seedDatabase = async () => {
       {
         category: "Accessories",
         cost: 1000,
-        // Leave empty for user to fill in
         icon: "👜",
         imageUrl:
           "https://www.mastermindtoys.com/products/amuseable-rainbow-bag",
@@ -175,7 +180,6 @@ const seedDatabase = async () => {
       {
         category: "Hats",
         cost: 2000,
-        // Leave empty for user to fill in
         icon: "👑",
         imageUrl:
           "https://t4.ftcdn.net/jpg/02/04/25/71/360_F_204257104_jnqWGXAbNuyORkJG9yw9tdfutvkmJblt.jpg",
@@ -184,7 +188,6 @@ const seedDatabase = async () => {
       {
         category: "Footwear",
         cost: 300,
-        // Leave empty for user to fill in
         icon: "🧦",
         imageUrl: "https://socco78.com/products/white-striped-socks-royal",
         name: "Blue Socks"
