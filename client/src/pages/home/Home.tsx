@@ -1,12 +1,57 @@
 /* eslint-disable react/forbid-component-props */
+import axios from "axios";
 import { Bell, Calendar, Check, HelpCircle, Menu, Zap } from "lucide-react";
+import { useEffect, useState } from "react";
 
 import Card from "../../components/card/Card";
 import { Button } from "../../components/ui/button";
 
+enum Status {
+  COMPLETED = "completed",
+  NOT_COMPLETED = "not completed"
+}
+
+interface Goal {
+  _id: string;
+  goal: string;
+  icon?: string;
+  points: number;
+  status: Status;
+  xpGain: number;
+}
+
 export default function Home() {
+  const [goals, setGoals] = useState<Goal[]>([]);
+
+  const getGoals = async () => {
+    try {
+      console.log("Fetching goals...");
+      const user = (
+        await axios.get("http://localhost:3000/api/users/name?name=admin")
+      ).data;
+      const response = await axios.post<Goal[]>(
+        `http://localhost:3000/api/generate?userId=${user._id}`,
+        {
+          commute_distance: user.profiles.sign_up_selections.commute_distance,
+          commute_type: user.profiles.sign_up_selections.commute_type,
+          garbage_bags_biweekly:
+            user.profiles.sign_up_selections.garbage_bags_biweekly,
+          recycle_frequency: user.profiles.sign_up_selections.recycle_frequency
+        }
+      );
+      console.log(response.data);
+      setGoals(response.data);
+    } catch (error) {
+      console.error("Error fetching goals:", error);
+    }
+  };
+
+  useEffect(() => {
+    void getGoals();
+  }, []);
+
   return (
-    <div className="flex flex-col min-h-screen min-w-full bg-green-500 mx-auto relative">
+    <div className="flex flex-col min-h-screen min-w-full bg-green-500 mx-auto relative mb-[56px]">
       {/* Background Scene */}
       <div className="absolute inset-0 z-0">
         {/* Sky */}
@@ -85,7 +130,6 @@ export default function Home() {
             </span>
           </div>
         </header>
-
         {/* Character */}
         <div className="relative z-10 flex justify-center items-center mt-8">
           <div className="w-24 h-24 relative">
@@ -97,7 +141,6 @@ export default function Home() {
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-10 h-8 bg-red-500 rounded-t-full transform -rotate-6" />
           </div>
         </div>
-
         {/* Status Bar */}
         <div className="relative z-10 mt-8 mx-4 bg-green-400/80 rounded-lg p-4">
           <div className="flex justify-between items-center">
@@ -120,7 +163,6 @@ export default function Home() {
             </div>
           </div>
         </div>
-
         {/* Goals */}
         <div className="relative z-10 mt-4 mx-4 flex items-center">
           <Calendar className="h-5 w-5 text-white mr-2" />
@@ -145,23 +187,36 @@ export default function Home() {
             </Button>
           </div>
         </div>
-
         {/* Tasks */}
-        <div className="flex flex-col gap-y-6 z-10  ">
-          <Card completed={true} icon="💧" points={5} text="Drink water" />
-          <Card
-            completed={true}
-            icon="🦒"
-            points={5}
-            text="Take a stretch break"
-          />
-          <Card completed={true} icon="🧼" points={5} text="Wash my face" />
-          <Card
-            completed={true}
-            icon="😊"
-            points={5}
-            text="Do one thing that makes me happy"
-          />
+        <div className="flex flex-col gap-y-6 z-10">
+          {goals && goals.length > 0 ? (
+            goals.map((goal, index) => (
+              <Card
+                completed={goal.status === Status.COMPLETED}
+                icon={goal.icon || "🌱"}
+                key={index}
+                points={goal.points || 5}
+                text={goal.goal}
+              />
+            ))
+          ) : (
+            <>
+              <Card completed={true} icon="💧" points={5} text="Drink water" />
+              <Card
+                completed={true}
+                icon="🦒"
+                points={5}
+                text="Take a stretch break"
+              />
+              <Card completed={true} icon="🧼" points={5} text="Wash my face" />
+              <Card
+                completed={true}
+                icon="😊"
+                points={5}
+                text="Do one thing that makes me happy"
+              />
+            </>
+          )}
         </div>
       </div>
     </div>
