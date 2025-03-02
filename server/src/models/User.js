@@ -31,8 +31,15 @@ const userSchema = new mongoose.Schema({
     },
     goals_assigned: { default: [], type: [String] },
     goals_completed: { default: 0, type: Number },
-    items_available: { default: [], type: [String] },
-    items_purchased: { default: [], type: [String] },
+    items: {
+      type: [
+        {
+          item_id: { type: String, required: true },
+          availability: { type: Boolean, default: true }
+        }
+      ],
+      default: []
+    },
     level: {
       default: 1,
       min: 1,
