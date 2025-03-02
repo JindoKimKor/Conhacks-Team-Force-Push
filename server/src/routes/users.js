@@ -28,6 +28,19 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+// Get a specific user by name
+router.get("/:name", async (req, res) => {
+  try {
+    const user = await User.findOne({ name: req.params.name });
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    return res.json(user);
+  } catch (err) {
+    return res.status(500).json({ message: err.message });
+  }
+});
+
 // Create a new user
 router.post("/", async (req, res) => {
   try {
