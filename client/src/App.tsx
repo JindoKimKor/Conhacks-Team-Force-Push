@@ -1,12 +1,15 @@
 import "./App.css";
 
+import { Turtle } from "lucide-react";
 import { BsStars } from "react-icons/bs";
 import { FaHeart, FaShoppingBag } from "react-icons/fa";
+import { GiTurtle } from "react-icons/gi";
 import { GoGoal } from "react-icons/go";
 import { MdLeaderboard } from "react-icons/md";
 import { Route, Routes, useNavigate } from "react-router-dom";
 
 import MenuNav from "./components/menu-nav/MenuNav";
+import Buddy from "./pages/buddy/Buddy";
 import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
 import Metrics from "./pages/metrics/Metrics";
@@ -27,8 +30,7 @@ function App() {
       }
     },
     {
-      badge: 3,
-      icon: <FaHeart />,
+      icon: <GiTurtle />,
       id: 2,
       label: "Buddy",
       onClick: () => {
@@ -69,6 +71,7 @@ function App() {
         <Route element={<Register />} path="/register" />
         <Route element={<Metrics />} path="/metrics" />
         <Route element={<Perks />} path="/perks" />
+        <Route element={<Buddy />} path="/buddy" />
       </Routes>
       <MenuNav items={menuItems} />
     </main>
