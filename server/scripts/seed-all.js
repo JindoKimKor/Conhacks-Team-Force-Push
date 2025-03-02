@@ -106,7 +106,7 @@ const seedDatabase = async () => {
     // Admin user with one item (Chicken Hat)
     const adminUser = new User({
       email: "admin@example.com",
-      name: "Admin",
+      name: "admin",
       password: "password123",
       points: 5000,
       profiles: {
