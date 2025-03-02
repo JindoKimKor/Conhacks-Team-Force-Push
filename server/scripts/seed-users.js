@@ -1,12 +1,8 @@
-import dotenv from "dotenv";
 import mongoose from "mongoose";
 
-import Perk from "../src/models/Perk.js";
 import User from "../src/models/User.js";
 
 const MONGODB_URI = "mongodb://localhost:27017/conhacks";
-// Load environment variables
-dotenv.config();
 
 // Connect to MongoDB
 mongoose
@@ -27,7 +23,7 @@ const seedUsers = async () => {
     // Create a fresh level 1 user
     const newUser = new User({
       email: "newuser@example.com",
-      name: "New User",
+      name: "admin",
       password: "password123",
       points: 0,
       profiles: {
