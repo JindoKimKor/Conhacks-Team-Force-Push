@@ -1,12 +1,13 @@
 import "./App.css";
 
 import { Turtle } from "lucide-react";
+import { useEffect, useState } from "react";
 import { BsStars } from "react-icons/bs";
 import { FaHeart, FaShoppingBag } from "react-icons/fa";
 import { GiTurtle } from "react-icons/gi";
 import { GoGoal } from "react-icons/go";
 import { MdLeaderboard } from "react-icons/md";
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 
 import MenuNav from "./components/menu-nav/MenuNav";
 import Buddy from "./pages/buddy/Buddy";
@@ -19,6 +20,19 @@ import Shop from "./pages/shop/Shop";
 
 function App() {
   const navigate = useNavigate();
+  const [isFirstVisit, setIsFirstVisit] = useState(true);
+
+  useEffect(() => {
+    // Check if user has visited before
+    const hasVisitedBefore = localStorage.getItem("hasVisitedBefore");
+    if (!hasVisitedBefore) {
+      // Set flag for first-time visitors
+      localStorage.setItem("hasVisitedBefore", "true");
+      setIsFirstVisit(true);
+    } else {
+      setIsFirstVisit(false);
+    }
+  }, []);
 
   const menuItems = [
     {

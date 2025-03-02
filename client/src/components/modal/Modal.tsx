@@ -1,5 +1,5 @@
 /* eslint-disable react/forbid-component-props */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { Button } from "../ui/button";
 import { Checkbox } from "../ui/checkbox";
@@ -21,16 +21,58 @@ interface Question {
 interface ModalProps {
   onComplete: () => void;
   onProgress: (currentQuestion: number) => void;
+  q1Callback: (value: string | string[]) => void;
+  q2Callback: (value: string | string[]) => void;
+  q3Callback: (value: string | string[]) => void;
+  q4Callback: (value: string | string[]) => void;
   questions: Question[];
 }
 
 export default function Modal({
   onComplete,
   onProgress,
+  q1Callback,
+  q2Callback,
+  q3Callback,
+  q4Callback,
   questions
 }: ModalProps) {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState<Record<number, string | string[]>>({});
+
+  useEffect(() => {
+    // Get the current question ID
+    if (currentQuestion >= 0 && currentQuestion < questions.length) {
+      const questionId = questions[currentQuestion].id;
+      const selectedValue = answers[questionId];
+
+      // Use the question ID to access the corresponding answer
+      switch (currentQuestion) {
+        case 0:
+          q1Callback(selectedValue);
+          break;
+        case 1:
+          q2Callback(selectedValue);
+          break;
+        case 2:
+          q3Callback(selectedValue);
+          break;
+        case 3:
+          q4Callback(selectedValue);
+          break;
+        default:
+          break;
+      }
+    }
+  }, [
+    answers,
+    currentQuestion,
+    questions,
+    q1Callback,
+    q2Callback,
+    q3Callback,
+    q4Callback
+  ]);
 
   const handleNext = () => {
     if (currentQuestion < questions.length - 1) {

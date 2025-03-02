@@ -1,7 +1,7 @@
 import "./Login.css";
 
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 /**
  * Login Component.
@@ -10,6 +10,8 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+
+  const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -22,6 +24,7 @@ export default function Login() {
 
     // Reset form
     setError("");
+    void navigate("/");
   };
 
   return (
@@ -60,13 +63,13 @@ export default function Login() {
             />
           </div>
 
-          <button className="login-button" type="submit">
+          <button className="login-button" onClick={handleSubmit} type="submit">
             Login
           </button>
         </form>
 
         <div className="signup-link">
-          Don&apos;t have an account? <Link to="/signup">Sign up</Link>
+          Don&apos;t have an account? <Link to="/register">Sign up</Link>
         </div>
       </div>
     </div>

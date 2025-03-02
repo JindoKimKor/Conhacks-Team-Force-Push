@@ -33,7 +33,7 @@ router.post("/", async (req, res) => {
   try {
     // 1. Create the User
     const newUser = await User.create(req.body);
-
+    console.log(newUser);
     // 2. Create the associated Turtle
     const turtleData = {
       emotionalState: "neutral",
