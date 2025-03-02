@@ -1,11 +1,11 @@
 @import "tailwindcss";
 
 @layer components {
-  .metric-card {
+  .perk-card {
     @apply transition-all duration-200 ease-in-out;
   }
 
-  .metric-card:hover {
+  .perk-card:hover {
     @apply transform -translate-y-1 shadow-md;
   }
 
@@ -17,21 +17,30 @@
     @apply mt-2;
   }
 
-  /* Custom scrollbar for the metrics grid */
-  .metrics-grid::-webkit-scrollbar {
+  /* Custom scrollbar for the perks grid */
+  .perks-grid::-webkit-scrollbar {
     width: 6px;
   }
 
-  .metrics-grid::-webkit-scrollbar-track {
+  .perks-grid::-webkit-scrollbar-track {
     @apply bg-transparent;
   }
 
-  .metrics-grid::-webkit-scrollbar-thumb {
+  .perks-grid::-webkit-scrollbar-thumb {
     @apply bg-white/30 rounded-full;
   }
 
-  .metrics-grid::-webkit-scrollbar-thumb:hover {
+  .perks-grid::-webkit-scrollbar-thumb:hover {
     @apply bg-white/50;
+  }
+
+  /* Hover effect for store links */
+  .perk-card a {
+    @apply transition-all duration-200;
+  }
+
+  .perk-card a:hover {
+    @apply transform scale-105;
   }
 }
 
